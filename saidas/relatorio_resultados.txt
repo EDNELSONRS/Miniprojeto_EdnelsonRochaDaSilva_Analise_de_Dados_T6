@@ -1,0 +1,127 @@
+MINI-PROJETO - ANÁLISE EXPLORATÓRIA DA BASE VAREJO
+Autor: Ednelson Rocha da Silva | Turma: Analise_de_Dados_T6
+
+1. PERFIL DA BASE ORIGINAL
+Registros: 830,000 | Colunas úteis: 10
+Tipos originais:
+DATA         string
+CO_ID        string
+CL_ID        string
+CL_GENERO    string
+CL_EC        string
+CL_FHL       string
+CL_SEG       string
+PR_ID        string
+PR_CAT       string
+PR_NOME      string
+Nulos por coluna (antes da limpeza):
+DATA         0
+CO_ID        0
+CL_ID        0
+CL_GENERO    0
+CL_EC        0
+CL_FHL       0
+CL_SEG       0
+PR_ID        0
+PR_CAT       0
+PR_NOME      0
+Duplicatas exatas: 96,553
+Categorias ausentes/#N/D: 3,650
+Datas inválidas: 0
+
+2. LIMPEZA REALIZADA
+Categoria vazia/#N/D → NAO_INFORMADA (preserva o item comprado).
+Datas → datetime; identificadores e número de filhos → Int64.
+Duplicatas exatas removidas; linhas sem chaves essenciais removidas.
+{'duplicatas_removidas': 96553, 'linhas_essenciais_removidas': 0, 'filhos_negativos_convertidos_em_nulo': 0}
+
+3. ESTATÍSTICAS - NÚMERO DE FILHOS (um registro por cliente)
+count       1000.0
+mean         1.136
+std        1.41333
+min            0.0
+25%            0.0
+50%            0.0
+75%            2.0
+max            4.0
+mediana        0.0
+Moda(s): [0]
+
+4. AGRUPAMENTOS
+Itens por gênero:
+CL_GENERO
+F    382427
+M    351020
+Compras únicas por gênero:
+CL_GENERO
+F    9615
+M    8856
+Top 10 categorias:
+               ITENS_VENDIDOS  COMPRAS_UNICAS
+PR_CAT                                       
+ALIMENTOS              384197           18267
+HIGIENE                137702           17610
+LIMPEZA                128632           17475
+BEBIDAS                 38264           14735
+PET                     28553           13495
+ACESSORIOS              12871            9224
+NAO_INFORMADA            3228            3228
+Série mensal:
+         ITENS_VENDIDOS  COMPRAS_UNICAS
+DATA                                   
+2019-01            6492             171
+2019-02           16153             402
+2019-03            9835             257
+2019-04           16255             410
+2019-05           28115             711
+2019-06           19484             493
+2019-07           10755             274
+2019-08           15918             420
+2019-09           16895             436
+2019-10            9127             242
+2019-11            6120             151
+2019-12           20954             516
+2020-01           20675             506
+2020-02           17173             434
+2020-03           17543             439
+2020-04           15695             387
+2020-05           14011             366
+2020-06           10907             264
+2020-07            8967             215
+2020-08           15935             384
+2020-09           18877             471
+2020-10           25275             633
+2020-11           15079             384
+2020-12           12667             311
+2021-01           23915             616
+2021-02           17150             433
+2021-03           15537             382
+2021-04           14820             363
+2021-05           13198             333
+2021-06           17231             445
+2021-07           23635             599
+2021-08           14945             386
+2021-09           23618             594
+2021-10           28575             711
+2021-11            8684             231
+2021-12           15505             412
+2022-01           23039             566
+2022-02           16654             430
+2022-03           14014             364
+2022-04           12450             318
+2022-05           17475             429
+2022-06           12226             301
+2022-07           17579             446
+2022-08           11224             273
+2022-09            1297              35
+2022-10            2373              59
+2022-11            6192             155
+2022-12           13204             313
+
+5. CONCLUSÕES
+- O gênero com maior volume de itens é F, com 382,427 itens.
+- A categoria líder é ALIMENTOS, com 384,197 itens.
+- O mês de maior volume é 2021-10, com 28,575 itens.
+- Cada compra possui em média 39.71 itens; CO_ID foi agrupado para não confundir item com compra.
+- A base original tinha 96,553 duplicatas exatas e 3,650 categorias ausentes/sentinela.
+- A base não contém preço/valor/quantidade; portanto, 'vendas' significa volume de itens e compras, não faturamento.
